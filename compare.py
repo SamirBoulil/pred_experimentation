@@ -285,7 +285,9 @@ if __name__ == '__main__':
     else:
         sys.exit("too few arguments : usage python compare.py <refCluster1> <distanceFile1> <distanceFile2> ...")
 
-
+#idées :
+#   - Ne comparer que coupes qui ont au moin un nombre = au nombre de clusters prédit
+#   - Faire une meilleure recherche pour le calcul des FMesure globales
 ########################################
 #Garbage 
     #print "** les TOPS"
