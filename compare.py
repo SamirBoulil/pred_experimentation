@@ -4,6 +4,7 @@
 import Orange
 import sys, os
 import csv
+import math
 from pygooglechart import Chart
 from pygooglechart import SimpleLineChart
 from pygooglechart import Axis
@@ -12,7 +13,7 @@ EPSILON = 0.00000000000001
 PATH = "resultats/"
 ####################################################################################
 #Ecriture disque
-def writeResults(filename, resMatrix, FMesureGlob, clusterRef, clusterPredit):
+def writeResults(filename, resMatrix, precisionAVG, recallAVG, FMesureAVG, ecartTypeAVGFMesure, clusterRef, clusterPredit):
     result_matrix = [];
     header = [];
     #Pour chaque colonne j'ai mon cluster expérimenté
@@ -47,7 +48,7 @@ def writeResults(filename, resMatrix, FMesureGlob, clusterRef, clusterPredit):
     #Ecriture dans le fichier de la matrice
     with open(filename, 'wb') as test_file:
         file_writer = csv.writer(test_file)
-        file_writer.writerow(["MATRICE DE COMPARAISON", "FMesure moyen (%): "+str(FMesureGlob)])
+        file_writer.writerow(["MATRICE DE COMPARAISON", "Precision AVG (%) "+str(precisionAVG), "Recall AVG (%)"+str(recallAVG),"FMesure AVG (%): "+str(FMesureAVG), "FMesure ecart-type : "+str(ecartTypeAVGFMesure)])
         file_writer.writerows(result_matrix)
         file_writer.writerow([""])
         file_writer.writerow(["CLUSTER DE REFERENCE"])
@@ -143,27 +144,7 @@ def fMesure(clusterReference, clusterPredit):
     precis = precision(clusterReference,clusterPredit)
     rapp = rappel(clusterReference, clusterPredit)
     
-    return 2.0*((precis*rapp)/(precis+rapp+EPSILON))
-####################################################################################
-#Tests
-def tests():
-    listA = ["a", "b", "c"]
-    listA2 = ["a", "c"]
-    listB = ["a", "b", "c", "d"]
-    listC = ["e", "f", "g"]
-        
-    assert precision(listA, listA) == 1.0
-    assert precision(listA, listA2) == 1.0
-    assert precision(listA, listB) == 0.75
-    assert precision(listA, listC) == 0.0
-    
-    
-    assert rappel(listA, listB) == 1.0
-    assert rappel(listA, listA2) == 0.6666666666666666
-    
-    
-    print "Tests ok"
-    
+    return 2.0*((precis*rapp)/(precis+rapp+EPSILON))    
 ####################################################################################
 #
 #Fonction qui effectue un CAH à partir d'une matrice de distance
@@ -174,9 +155,6 @@ def clusterDistances(distanceMatrix):
     clustering = Orange.clustering.hierarchical.HierarchicalClustering()
     clustering.linkage = Orange.clustering.hierarchical.WARD
     return clustering(distanceMatrix)
-
-
-
 
 #Fonction qui représente sous forme de dendogramme les 3 premiers clusters
 # Paramètres : root - le noeud racine de l'arbre de la CAH
@@ -231,25 +209,50 @@ def clustersIdToClustersLabel(cluster, labels):
         for instance in cluster:
             res[n].append(labels[instance])
     return res;
-
-# Fonction qui calcule la moyenne des FMesure sur notre matrice.
-# Pour chaque cluster de référence, chercher le cluster prédit qui maximise la FMesure et l'éliminer de la liste des clusters disponnible
+#####################################################################################
+#fonction qui retourne les valeurs ayant le plus de sens en fonction des clusters Prédit et de référence (eg, en choisissant la meilleur case pour les clusters. maximiser l'entropie ?)
+# Pour chaque cluster de référence, chercher le cluster prédit qui maximise la mesure en question et l'éliminer de la liste des clusters disponibles
 # Dans l'idéal si on trouve qu'un cluster déjà éliminé maximise encore un cluster de référence. On ira vérifier si la valeur est alors plus grande et on switchera alors
 # Ca m'a lair compliqué.
-def getFMesureAVG(result_matrix):
-    fMesureMoyTemp = 0.0
-    nbComparaison = 0
+#Retourne un liste de toute les valeurs sélectionnées par l'algorithme.
+# Où measureIndex=-1 : le tuple, en maximisant la FMesure
+# Où measureIndex=0 : precision
+# Où measureIndex=1 : rappel
+# Où measureIndex=2 : FMesure
+def getRelevantData(result_matrix, measureIndex):
+    res = []
     eliminatedClust = []#à terme stocker [(ieme, FmesureVal)]
     for item1 in result_matrix:
-        maxFmesure = 0.0
+        maxVal = 0.0
         for i,item2 in enumerate(item1):
-            if item2[2] > maxFmesure and i not in eliminatedClust:
-                maxFmesure = float(item2[2])
-                fMesureMoyTemp = float(item2[2])#Récupération de la FMesure dans le tuple (precision,rappel, fmesure)
-                nbComparaison += 1
-                eliminatedClust.append(i)
+            if item2[2] > maxVal and i not in eliminatedClust:
+                if measureIndex == -1:
+                    res.append(item2)
+                    maxVal = item2[2]
+                else:
+                    maxVal = float(item2[measureIndex])
+                    res.append(item2[measureIndex])
+                    eliminatedClust.append(i)
             #else si FMesure supérieure
-    return float(fMesureMoyTemp/nbComparaison)
+    return res
+    
+        
+# Fonction qui calcule la moyenne de mesure sur notre matrice.
+# Ou measureIndex=0 : precision
+# Ou measureIndex=1 : rappel
+# Ou measureIndex=2 : FMesure
+def getMeasureAVG(dataTuples, measureIndex):
+    data = [x[measureIndex] for x in dataTuples]
+    return float(sum(data)/len(data))    
+
+# http://stephane.bunel.org/Divers/moyenne-ecart-type-mediane
+def getMeasureEcartType(dataTuples, measureIndex):
+    dataAVG = getMeasureAVG(dataTuples, measureIndex)**2
+    somme = sum([x[measureIndex]**2 for x in dataTuples])
+    variance = float(somme/len(dataTuples) - dataAVG)
+    return float(math.sqrt(variance))
+     
+
 
 def generateGraph(fMesureGlobalPerCent, nbComparison, resPath):
     max_y = 100#Fmesure à 100%
@@ -269,7 +272,10 @@ def generateGraph(fMesureGlobalPerCent, nbComparison, resPath):
         if x%5 == 0:
             y_axis.append(x)
     chart.set_axis_labels(Axis.BOTTOM, y_axis)
-    chart.download(resPath+'FMesure-evolution.png')
+    chart.download(resPath)
+
+
+
 
 def main():
     print
@@ -281,7 +287,8 @@ def main():
     for i, df in enumerate(distancesFile):
         print "** PROCESSING  DISTANCE FILE : "+df
         #Create result directory if not exists
-        resPath = str(i)+"_"+os.path.splitext(os.path.basename(df))[0]+"_"+PATH                         #Dossier du résultat de la forme <iteration>_<fichierDistance>_resultats/
+        distanceFile = os.path.splitext(os.path.basename(df))[0]
+        resPath = str(i)+"_"+distanceFile+"_"+PATH                         #Dossier du résultat de la forme <iteration>_<fichierDistance>_resultats/
         if not os.path.exists(resPath):
             os.makedirs(resPath)
             
@@ -289,21 +296,57 @@ def main():
         root = clusterDistances(matrix_distance)
         #Pour chaque groupement possible faire topmost
         fMesureGlobalPerCent = []
+        precisonGlobalPerCent = []
+        recallGlobalPerCent = []
+        ecartTypeGlobalPer = []
         for i in range(len(matrix_distance[0])):
             filename = resPath+"Precision_Rappel"+str(i)+".csv"
             clustersPredit = sorted(Orange.clustering.hierarchical.top_clusters(root,i), key=len);          #CAH
             clustersPredit = clustersIdToClustersLabel(clustersPredit,labels)                               #On remplace les ID de mots par leurs noms
             result_matrix = compareClusters(clusterReference, clustersPredit)                               #On compare les clusters en calculant la précison/Rappel/FMesure
-            FMesureMatrix = float(getFMesureAVG(result_matrix)*100)                                         #On calcule la FMesure globale
-            fMesureGlobalPerCent.append(FMesureMatrix)                                                      #On sauve cette FMesure pour générer un graphe de l'évolution de la FMesure
-            writeResults(filename, result_matrix, FMesureMatrix, clusterReference, clustersPredit)          #On écrit le résultat dans le fichier
+            
+            dataTuple = getRelevantData(result_matrix, -1)                                                  #Recherche des correspondantes ref/prédit qui maximise la FMesure
+            precisionAVG = float(getMeasureAVG(dataTuple, 0)*100)
+            recallAVG = float(getMeasureAVG(dataTuple, 1)*100)
+            FMesureAVG = float(getMeasureAVG(dataTuple, 2)*100) #On calcule la FMesure globale
+            ecartTypeFMesureAVG = float(getMeasureEcartType(dataTuple,2)*100)
+            
+            precisonGlobalPerCent.append(precisionAVG) #On calcule la precision global et on ajoute dans la liste
+            recallGlobalPerCent.append(recallAVG) #On calcule le rappel global et on ajoute dans la liste
+            fMesureGlobalPerCent.append(FMesureAVG)                                                     #On sauve cette FMesure pour générer un graphe de l'évolution de la FMesure
+            ecartTypeGlobalPer.append(ecartTypeFMesureAVG)
+            writeResults(filename, result_matrix, precisionAVG, recallAVG, FMesureAVG, ecartTypeFMesureAVG,clusterReference, clustersPredit)          #On écrit le résultat dans le fichier
         
         #Résumé du traitement
         print "maximum is at cluster :"+str(fMesureGlobalPerCent.index(max(fMesureGlobalPerCent)))
         print "Results for "+df+" written at "+resPath
         print
         #Génération d'un graphe récapitulatif de la mesure
-        generateGraph(fMesureGlobalPerCent, i, resPath)
+        generateGraph(fMesureGlobalPerCent, i, resPath+"FMesure-evolution_"+distanceFile+".png")
+        generateGraph(precisonGlobalPerCent, i, resPath+"Precision-evolution_"+distanceFile+".png")
+        generateGraph(recallGlobalPerCent, i, resPath+"Recall-evolution_"+distanceFile+".png")
+        generateGraph(ecartTypeGlobalPer, i, resPath+"ecartType-Fmesure-evolution_"+distanceFile+".png")
+        
+        
+####################################################################################
+#Tests
+def tests():
+    listA = ["a", "b", "c"]
+    listA2 = ["a", "c"]
+    listB = ["a", "b", "c", "d"]
+    listC = ["e", "f", "g"]
+        
+    assert precision(listA, listA) == 1.0
+    assert precision(listA, listA2) == 1.0
+    assert precision(listA, listB) == 0.75
+    assert precision(listA, listC) == 0.0
+    
+    
+    assert rappel(listA, listB) == 1.0
+    assert rappel(listA, listA2) == 0.6666666666666666
+    
+    print "Tests ok"
+
 
 if __name__ == '__main__':
     if len(sys.argv) > 2:

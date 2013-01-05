@@ -1,0 +1,35 @@
+MATRICE DE COMPARAISON,Precision AVG (%) 4.3615676359,Recall AVG (%)86.6496598639,FMesure AVG (%): 8.22511407892,FMesure ecart-type : 3.5965578608
+,Cluster 0
+Reference cluster 0,"(0.02654867256637168, 1.0, 0.051724137931033976)"
+Reference cluster 1,"(0.02654867256637168, 1.0, 0.051724137931033976)"
+Reference cluster 2,"(0.02654867256637168, 0.75, 0.05128205128205062)"
+Reference cluster 3,"(0.061946902654867256, 1.0, 0.11666666666666556)"
+Reference cluster 4,"(0.02654867256637168, 1.0, 0.051724137931033976)"
+Reference cluster 5,"(0.08849557522123894, 0.8333333333333334, 0.15999999999999825)"
+Reference cluster 6,"(0.035398230088495575, 1.0, 0.06837606837606772)"
+Reference cluster 7,"(0.035398230088495575, 1.0, 0.06837606837606772)"
+Reference cluster 8,"(0.05309734513274336, 0.8571428571428571, 0.0999999999999989)"
+Reference cluster 9,"(0.02654867256637168, 0.5, 0.05042016806722593)"
+Reference cluster 10,"(0.05309734513274336, 0.8571428571428571, 0.0999999999999989)"
+Reference cluster 11,"(0.04424778761061947, 0.8333333333333334, 0.0840336134453772)"
+Reference cluster 12,"(0.02654867256637168, 0.6, 0.05084745762711783)"
+Reference cluster 13,"(0.07964601769911504, 0.9, 0.14634146341463267)"
+""
+CLUSTER DE REFERENCE
+Reference cluster 0,imperfections,ridules,rides
+Reference cluster 1,solaire,uv,protection
+Reference cluster 2,odeur,agréable,sent,parfum
+Reference cluster 3,boutons,camoufle,colle,rougeurs,pique,taches,pores
+Reference cluster 4,couvrant,couvrance,couvre
+Reference cluster 5,brillance,naturel,mine,effet,briller,lisse,matifie,teintée,brille,teint,unifie,éclat
+Reference cluster 6,pratique,utilisation,facile,application
+Reference cluster 7,couleur,teinte,belle,gamme
+Reference cluster 8,hydratante,hydratée,hydratation,hydrate,douce,hydratant,sensation
+Reference cluster 9,efficacité,parfait,résultat,satisfaite,qualité,efficace
+Reference cluster 10,pot,flacon,pompe,présentation,bouchon,tube,emballage
+Reference cluster 11,temps,tient,journée,dure,jours,jour
+Reference cluster 12,cher,chère,rapport,acheté,prix
+Reference cluster 13,mixtes,naturelle,sèche,sensible,peaux,peau,mixte,convient,grasse,grasses
+""
+CLUSTER PRÉDITS
+Cluster 0,mixtes,grasses,taches,naturelle,teinte,parfaite,maquillage,gamme,utilisation,matin,sensation,pique,film,maquiller,poudre,mine,teintee,jour,nuit,cher,produit,prix,adore,recommande,racheterai,pot,tube,presentation,efficacite,hydratant,texture,odeur,penetre,creme,parfum,dommage,creme,protection,pratique,pompe,tient,dure,flacon,agreable,legere,fluide,hydratation,effet,penetration,colle,sent,facile,bouchon,viens,chere,hydratante,hiver,peaux,temps,couleur,peau,application,efficace,parfait,couvrance,soin,visage,jours,couvrant,teint,satisfaite,deçue,solaire,uv,rapport,qualite,emballage,brillance,rougeurs,imperfections,hydrate,matifie,grasse,brille,convient,gras,briller,journee,long,ridules,naturel,joli,unifie,eclat,camoufle,couvre,masque,boutons,achete,rides,zone,donne,seche,sensible,mixte,impression,lisse,douce,hydratee,belle,resultat,claire,pores

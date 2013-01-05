@@ -1,0 +1,40 @@
+MATRICE DE COMPARAISON,Precision AVG (%) 15.0255884466,Recall AVG (%)36.7543859649,FMesure AVG (%): 18.7568822676,FMesure ecart-type : 7.7510643647
+,Cluster 0,Cluster 1,Cluster 2,Cluster 3,Cluster 4,Cluster 5
+Reference cluster 0,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.09090909090909091, 0.6666666666666666, 0.1599999999999979)","(0.022727272727272728, 0.3333333333333333, 0.042553191489360515)"
+Reference cluster 1,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.14285714285714285, 0.6666666666666666, 0.2352941176470559)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.022727272727272728, 0.3333333333333333, 0.042553191489360515)"
+Reference cluster 2,"(0.0, 0.0, 0.0)","(0.15384615384615385, 0.5, 0.23529411764705524)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.045454545454545456, 0.5, 0.08333333333333182)"
+Reference cluster 3,"(0.4, 0.2857142857142857, 0.3333333333333285)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.18181818181818182, 0.5714285714285714, 0.2758620689655136)","(0.022727272727272728, 0.14285714285714285, 0.03921568627450744)"
+Reference cluster 4,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.07142857142857142, 0.3333333333333333, 0.1176470588235265)","(0.0, 0.0, 0.0)","(0.045454545454545456, 0.3333333333333333, 0.07999999999999789)","(0.022727272727272728, 0.3333333333333333, 0.042553191489360515)"
+Reference cluster 5,"(0.0, 0.0, 0.0)","(0.15384615384615385, 0.16666666666666666, 0.159999999999995)","(0.07142857142857142, 0.08333333333333333, 0.07692307692307195)","(0.2, 0.25, 0.2222222222222173)","(0.09090909090909091, 0.16666666666666666, 0.11764705882352486)","(0.09090909090909091, 0.3333333333333333, 0.14285714285713952)"
+Reference cluster 6,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.045454545454545456, 0.25, 0.07692307692307432)","(0.06818181818181818, 0.75, 0.12499999999999847)"
+Reference cluster 7,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.09090909090909091, 0.5, 0.15384615384615125)","(0.045454545454545456, 0.5, 0.08333333333333182)"
+Reference cluster 8,"(0.0, 0.0, 0.0)","(0.07692307692307693, 0.14285714285714285, 0.09999999999999547)","(0.0, 0.0, 0.0)","(0.06666666666666667, 0.14285714285714285, 0.09090909090908658)","(0.09090909090909091, 0.2857142857142857, 0.13793103448275496)","(0.06818181818181818, 0.42857142857142855, 0.11764705882352704)"
+Reference cluster 9,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.21428571428571427, 0.5, 0.29999999999999577)","(0.0, 0.0, 0.0)","(0.045454545454545456, 0.16666666666666666, 0.07142857142856808)","(0.045454545454545456, 0.3333333333333333, 0.07999999999999789)"
+Reference cluster 10,"(0.4, 0.2857142857142857, 0.3333333333333285)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.11363636363636363, 0.7142857142857143, 0.19607843137254666)"
+Reference cluster 11,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.07142857142857142, 0.16666666666666666, 0.0999999999999958)","(0.13333333333333333, 0.3333333333333333, 0.19047619047618639)","(0.0, 0.0, 0.0)","(0.06818181818181818, 0.5, 0.1199999999999979)"
+Reference cluster 12,"(0.0, 0.0, 0.0)","(0.07692307692307693, 0.2, 0.11111111111110711)","(0.14285714285714285, 0.4, 0.2105263157894698)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.045454545454545456, 0.4, 0.08163265306122267)"
+Reference cluster 13,"(0.0, 0.0, 0.0)","(0.23076923076923078, 0.3, 0.2608695652173864)","(0.14285714285714285, 0.2, 0.1666666666666618)","(0.2, 0.3, 0.2399999999999952)","(0.045454545454545456, 0.1, 0.06249999999999572)","(0.022727272727272728, 0.1, 0.03703703703703402)"
+""
+CLUSTER DE REFERENCE
+Reference cluster 0,imperfections,ridules,rides
+Reference cluster 1,solaire,uv,protection
+Reference cluster 2,odeur,agréable,sent,parfum
+Reference cluster 3,boutons,camoufle,colle,rougeurs,pique,taches,pores
+Reference cluster 4,couvrant,couvrance,couvre
+Reference cluster 5,brillance,naturel,mine,effet,briller,lisse,matifie,teintée,brille,teint,unifie,éclat
+Reference cluster 6,pratique,utilisation,facile,application
+Reference cluster 7,couleur,teinte,belle,gamme
+Reference cluster 8,hydratante,hydratée,hydratation,hydrate,douce,hydratant,sensation
+Reference cluster 9,efficacité,parfait,résultat,satisfaite,qualité,efficace
+Reference cluster 10,pot,flacon,pompe,présentation,bouchon,tube,emballage
+Reference cluster 11,temps,tient,journée,dure,jours,jour
+Reference cluster 12,cher,chère,rapport,acheté,prix
+Reference cluster 13,mixtes,naturelle,sèche,sensible,peaux,peau,mixte,convient,grasse,grasses
+""
+CLUSTER PRÉDITS
+Cluster 0,bouchon,viens,pique,emballage,taches
+Cluster 1,produit,prix,texture,odeur,crème,peau,agréable,pénètre,hydrate,grasse,effet,teint,peaux
+Cluster 2,mixtes,grasses,chère,satisfaite,nuit,solaire,uv,parfait,efficace,couvrance,teintée,acheté,dommage,dure
+Cluster 3,sèche,sensible,mixte,lisse,douce,journée,briller,brille,gras,film,temps,soin,maquillage,visage,poudre
+Cluster 4,naturelle,éclat,couvrant,colle,masque,matin,maquiller,pores,ridules,rides,brillance,camoufle,rougeurs,zone,donné,hydratée,belle,résultat,gamme,utilisation,sensation,impression
+Cluster 5,cher,pot,tube,hydratante,hydratation,application,mine,imperfections,boutons,couleur,teinte,parfaite,claire,efficacité,long,tient,adore,matifie,pénétration,pratique,présentation,protection,flacon,pompe,rapport,qualité,naturel,couvre,unifie,joli,légère,fluide,facile,sent,parfum,hiver,jours,convient,creme,jour,rachèterai,hydratant,recommande,déçue
