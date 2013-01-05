@@ -12,29 +12,50 @@ EPSILON = 0.00000000000001
 PATH = "resultats/"
 ####################################################################################
 #Ecriture disque
-def writeResults(filename, resMatrix):
+def writeResults(filename, resMatrix, FMesureGlob, clusterRef, clusterPredit):
     result_matrix = [];
     header = [];
     #Pour chaque colonne j'ai mon cluster expérimenté
     for i in range(len(resMatrix[0])+1):
         if i>0:
-            header.append("Cluster "+str(i))
+            header.append("Cluster "+str(i-1))
         else:
             header.append("")
     result_matrix.append(header);
     
-    #Pour chaque ligne j'ai un label de cluster referen
+    #Pour chaque ligne j'ai un label de cluster reference
     for i,item1 in enumerate(resMatrix):
         temp = []
-        temp.append("Reference cluster "+str(i+1))
+        temp.append("Reference cluster "+str(i))
         for j,item2 in enumerate(item1):
             temp.append(item2)
         result_matrix.append(temp)
+        
+    #Header pour les détails des clusters Reference
+    tempClusterRef = []
+    for i, row in enumerate(clusterRef):
+        tempRow = []
+        tempRow.append("Reference cluster "+str(i))
+        for item in row:
+            tempRow.append(item)
+        tempClusterRef.append(tempRow)
+        
+    #Header pour les détails des clusters prédits
+    for i, row in enumerate(clusterPredit):
+        row.insert(0, "Cluster "+str(i))
 
-    #Ecriture dans le fichier
+    #Ecriture dans le fichier de la matrice
     with open(filename, 'wb') as test_file:
         file_writer = csv.writer(test_file)
+        file_writer.writerow(["MATRICE DE COMPARAISON", "FMesure moyen (%): "+str(FMesureGlob)])
         file_writer.writerows(result_matrix)
+        file_writer.writerow([""])
+        file_writer.writerow(["CLUSTER DE REFERENCE"])
+        file_writer.writerows(tempClusterRef)
+        file_writer.writerow([""])
+        file_writer.writerow(["CLUSTER PRÉDITS"])
+        file_writer.writerows(clusterPredit)
+
     
 
 def loadCSVasListOfCLusters(path):
@@ -181,7 +202,7 @@ def showTroisGroupes(root):
 # |ref 1|(pres1,rap1,fmesure1)  |  ...       | ...
 # | ... |
 # |ref n|
-def generateResults(filename, clusterReference, clusterPredit):
+def compareClusters(clusterReference, clusterPredit):
     i = 0;
     j = 0;
     result_matrix = [[0 for x in xrange(len(clusterPredit))] for x in xrange(len(clusterReference))];#En ligne les clusters référent, en colonne les cluster prédit de la CAH
@@ -193,7 +214,6 @@ def generateResults(filename, clusterReference, clusterPredit):
             currFMes = fMesure(clusterReference[i], clusterPredit[j])
             result_matrix[i][j] = (currPrec, currRapp, currFMes)
     #print "** Ecriture du fichier :"+str(filename)
-    writeResults(filename, result_matrix);
     return result_matrix
 
 
@@ -252,15 +272,16 @@ def generateGraph(fMesureGlobalPerCent, nbComparison, resPath):
     chart.download(resPath+'FMesure-evolution.png')
 
 def main():
-    print "** Chargement de clusters de références"
-    refClusters, i = loadCSVasListOfCLusters(sys.argv[1])
-    print"Reference : Loaded "+str(len(refClusters))+" clusters and "+str(i)+" concepts."
-    
+    print
+    print "** LOADING REFERENCE CLUSTERS"
+    clusterReference, i = loadCSVasListOfCLusters(sys.argv[1])
+    print"Reference : Loaded "+str(len(clusterReference))+" clusters and "+str(i)+" concepts."
+    print
     distancesFile = sys.argv[2::]
     for i, df in enumerate(distancesFile):
         print "** PROCESSING  DISTANCE FILE : "+df
         #Create result directory if not exists
-        resPath = str(i)+"_"+PATH
+        resPath = str(i)+"_"+os.path.splitext(os.path.basename(df))[0]+"_"+PATH                         #Dossier du résultat de la forme <iteration>_<fichierDistance>_resultats/
         if not os.path.exists(resPath):
             os.makedirs(resPath)
             
@@ -269,12 +290,18 @@ def main():
         #Pour chaque groupement possible faire topmost
         fMesureGlobalPerCent = []
         for i in range(len(matrix_distance[0])):
-            clusters = sorted(Orange.clustering.hierarchical.top_clusters(root,i), key=len);
-            clusters = clustersIdToClustersLabel(clusters,labels)
-            result_matrix = generateResults(resPath+"Precision_Rappel"+str(i)+".csv", refClusters, clusters)
-            fMesureGlobalPerCent.append(float(getFMesureAVG(result_matrix)*100))
-        print "maximum is at index :"+str(fMesureGlobalPerCent.index(max(fMesureGlobalPerCent)))
+            filename = resPath+"Precision_Rappel"+str(i)+".csv"
+            clustersPredit = sorted(Orange.clustering.hierarchical.top_clusters(root,i), key=len);          #CAH
+            clustersPredit = clustersIdToClustersLabel(clustersPredit,labels)                               #On remplace les ID de mots par leurs noms
+            result_matrix = compareClusters(clusterReference, clustersPredit)                               #On compare les clusters en calculant la précison/Rappel/FMesure
+            FMesureMatrix = float(getFMesureAVG(result_matrix)*100)                                         #On calcule la FMesure globale
+            fMesureGlobalPerCent.append(FMesureMatrix)                                                      #On sauve cette FMesure pour générer un graphe de l'évolution de la FMesure
+            writeResults(filename, result_matrix, FMesureMatrix, clusterReference, clustersPredit)          #On écrit le résultat dans le fichier
         
+        #Résumé du traitement
+        print "maximum is at cluster :"+str(fMesureGlobalPerCent.index(max(fMesureGlobalPerCent)))
+        print "Results for "+df+" written at "+resPath
+        print
         #Génération d'un graphe récapitulatif de la mesure
         generateGraph(fMesureGlobalPerCent, i, resPath)
 
@@ -285,7 +312,7 @@ if __name__ == '__main__':
     else:
         sys.exit("too few arguments : usage python compare.py <refCluster1> <distanceFile1> <distanceFile2> ...")
 
-#idées :
+# Idées :
 #   - Ne comparer que coupes qui ont au moin un nombre = au nombre de clusters prédit
 #   - Faire une meilleure recherche pour le calcul des FMesure globales
 ########################################

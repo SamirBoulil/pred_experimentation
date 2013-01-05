@@ -1,0 +1,38 @@
+MATRICE DE COMPARAISON,FMesure moyen (%): 8.33333333333
+,Cluster 0,Cluster 1,Cluster 2,Cluster 3
+Reference cluster 0,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.05555555555555555, 0.6666666666666666, 0.10256410256410115)","(0.01694915254237288, 0.3333333333333333, 0.032258064516128115)"
+Reference cluster 1,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.05555555555555555, 0.6666666666666666, 0.10256410256410115)","(0.01694915254237288, 0.3333333333333333, 0.032258064516128115)"
+Reference cluster 2,"(0.0, 0.0, 0.0)","(0.15384615384615385, 0.5, 0.23529411764705524)","(0.0, 0.0, 0.0)","(0.03389830508474576, 0.5, 0.0634920634920623)"
+Reference cluster 3,"(0.4, 0.2857142857142857, 0.3333333333333285)","(0.0, 0.0, 0.0)","(0.1111111111111111, 0.5714285714285714, 0.18604651162790423)","(0.01694915254237288, 0.14285714285714285, 0.030303030303028403)"
+Reference cluster 4,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.05555555555555555, 0.6666666666666666, 0.10256410256410115)","(0.01694915254237288, 0.3333333333333333, 0.032258064516128115)"
+Reference cluster 5,"(0.0, 0.0, 0.0)","(0.15384615384615385, 0.16666666666666666, 0.159999999999995)","(0.08333333333333333, 0.25, 0.12499999999999625)","(0.11864406779661017, 0.5833333333333334, 0.19718309859154648)"
+Reference cluster 6,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.027777777777777776, 0.25, 0.0499999999999982)","(0.05084745762711865, 0.75, 0.09523809523809405)"
+Reference cluster 7,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.05555555555555555, 0.5, 0.09999999999999819)","(0.03389830508474576, 0.5, 0.0634920634920623)"
+Reference cluster 8,"(0.0, 0.0, 0.0)","(0.07692307692307693, 0.14285714285714285, 0.09999999999999547)","(0.05555555555555555, 0.2857142857142857, 0.09302325581395075)","(0.06779661016949153, 0.5714285714285714, 0.1212121212121193)"
+Reference cluster 9,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.1111111111111111, 0.6666666666666666, 0.19047619047618805)","(0.03389830508474576, 0.3333333333333333, 0.06153846153845986)"
+Reference cluster 10,"(0.4, 0.2857142857142857, 0.3333333333333285)","(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.0847457627118644, 0.7142857142857143, 0.15151515151514963)"
+Reference cluster 11,"(0.0, 0.0, 0.0)","(0.0, 0.0, 0.0)","(0.027777777777777776, 0.16666666666666666, 0.047619047619045174)","(0.0847457627118644, 0.8333333333333334, 0.15384615384615216)"
+Reference cluster 12,"(0.0, 0.0, 0.0)","(0.07692307692307693, 0.2, 0.11111111111110711)","(0.05555555555555555, 0.4, 0.09756097560975395)","(0.03389830508474576, 0.4, 0.062499999999998564)"
+Reference cluster 13,"(0.0, 0.0, 0.0)","(0.23076923076923078, 0.3, 0.2608695652173864)","(0.08333333333333333, 0.3, 0.13043478260869226)","(0.06779661016949153, 0.4, 0.11594202898550478)"
+""
+CLUSTER DE REFERENCE
+Reference cluster 0,imperfections,ridules,rides
+Reference cluster 1,solaire,uv,protection
+Reference cluster 2,odeur,agréable,sent,parfum
+Reference cluster 3,boutons,camoufle,colle,rougeurs,pique,taches,pores
+Reference cluster 4,couvrant,couvrance,couvre
+Reference cluster 5,brillance,naturel,mine,effet,briller,lisse,matifie,teintée,brille,teint,unifie,éclat
+Reference cluster 6,pratique,utilisation,facile,application
+Reference cluster 7,couleur,teinte,belle,gamme
+Reference cluster 8,hydratante,hydratée,hydratation,hydrate,douce,hydratant,sensation
+Reference cluster 9,efficacité,parfait,résultat,satisfaite,qualité,efficace
+Reference cluster 10,pot,flacon,pompe,présentation,bouchon,tube,emballage
+Reference cluster 11,temps,tient,journée,dure,jours,jour
+Reference cluster 12,cher,chère,rapport,acheté,prix
+Reference cluster 13,mixtes,naturelle,sèche,sensible,peaux,peau,mixte,convient,grasse,grasses
+""
+CLUSTER PRÉDITS
+Cluster 0,bouchon,viens,pique,emballage,taches
+Cluster 1,produit,prix,texture,odeur,crème,peau,agréable,pénètre,hydrate,grasse,effet,teint,peaux
+Cluster 2,mixtes,grasses,chère,satisfaite,nuit,solaire,uv,parfait,efficace,couvrance,teintée,acheté,dommage,dure,naturelle,éclat,couvrant,colle,masque,matin,maquiller,pores,ridules,rides,brillance,camoufle,rougeurs,zone,donné,hydratée,belle,résultat,gamme,utilisation,sensation,impression
+Cluster 3,sèche,sensible,mixte,lisse,douce,journée,briller,brille,gras,film,temps,soin,maquillage,visage,poudre,cher,pot,tube,hydratante,hydratation,application,mine,imperfections,boutons,couleur,teinte,parfaite,claire,efficacité,long,tient,adore,matifie,pénétration,pratique,présentation,protection,flacon,pompe,rapport,qualité,naturel,couvre,unifie,joli,légère,fluide,facile,sent,parfum,hiver,jours,convient,creme,jour,rachèterai,hydratant,recommande,déçue

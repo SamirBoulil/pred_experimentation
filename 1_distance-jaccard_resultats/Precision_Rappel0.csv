@@ -1,0 +1,35 @@
+MATRICE DE COMPARAISON,FMesure moyen (%): 5.1724137931
+,Cluster 0
+Reference cluster 0,"(0.02654867256637168, 1.0, 0.051724137931033976)"
+Reference cluster 1,"(0.02654867256637168, 1.0, 0.051724137931033976)"
+Reference cluster 2,"(0.035398230088495575, 1.0, 0.06837606837606772)"
+Reference cluster 3,"(0.061946902654867256, 1.0, 0.11666666666666556)"
+Reference cluster 4,"(0.02654867256637168, 1.0, 0.051724137931033976)"
+Reference cluster 5,"(0.10619469026548672, 1.0, 0.19199999999999828)"
+Reference cluster 6,"(0.035398230088495575, 1.0, 0.06837606837606772)"
+Reference cluster 7,"(0.035398230088495575, 1.0, 0.06837606837606772)"
+Reference cluster 8,"(0.061946902654867256, 1.0, 0.11666666666666556)"
+Reference cluster 9,"(0.05309734513274336, 1.0, 0.10084033613445281)"
+Reference cluster 10,"(0.061946902654867256, 1.0, 0.11666666666666556)"
+Reference cluster 11,"(0.05309734513274336, 1.0, 0.10084033613445281)"
+Reference cluster 12,"(0.04424778761061947, 1.0, 0.08474576271186358)"
+Reference cluster 13,"(0.08849557522123894, 1.0, 0.1626016260162587)"
+""
+CLUSTER DE REFERENCE
+Reference cluster 0,imperfections,ridules,rides
+Reference cluster 1,solaire,uv,protection
+Reference cluster 2,odeur,agréable,sent,parfum
+Reference cluster 3,boutons,camoufle,colle,rougeurs,pique,taches,pores
+Reference cluster 4,couvrant,couvrance,couvre
+Reference cluster 5,brillance,naturel,mine,effet,briller,lisse,matifie,teintée,brille,teint,unifie,éclat
+Reference cluster 6,pratique,utilisation,facile,application
+Reference cluster 7,couleur,teinte,belle,gamme
+Reference cluster 8,hydratante,hydratée,hydratation,hydrate,douce,hydratant,sensation
+Reference cluster 9,efficacité,parfait,résultat,satisfaite,qualité,efficace
+Reference cluster 10,pot,flacon,pompe,présentation,bouchon,tube,emballage
+Reference cluster 11,temps,tient,journée,dure,jours,jour
+Reference cluster 12,cher,chère,rapport,acheté,prix
+Reference cluster 13,mixtes,naturelle,sèche,sensible,peaux,peau,mixte,convient,grasse,grasses
+""
+CLUSTER PRÉDITS
+Cluster 0,mixtes,grasses,chère,satisfaite,nuit,solaire,uv,parfait,efficace,couvrance,teintée,acheté,dommage,dure,naturelle,éclat,couvrant,colle,masque,matin,maquiller,pores,ridules,rides,brillance,camoufle,rougeurs,zone,donné,hydratée,belle,résultat,gamme,utilisation,sensation,impression,bouchon,viens,pique,emballage,taches,sèche,sensible,mixte,lisse,douce,journée,briller,brille,gras,film,temps,soin,maquillage,visage,poudre,cher,pot,tube,hydratante,hydratation,application,mine,imperfections,boutons,couleur,teinte,parfaite,claire,efficacité,long,tient,adore,matifie,pénétration,pratique,présentation,protection,flacon,pompe,rapport,qualité,naturel,couvre,unifie,joli,légère,fluide,facile,sent,parfum,hiver,jours,convient,creme,jour,rachèterai,hydratant,recommande,déçue,produit,prix,texture,odeur,crème,peau,agréable,pénètre,hydrate,grasse,effet,teint,peaux
